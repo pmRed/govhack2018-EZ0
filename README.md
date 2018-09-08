@@ -15,7 +15,7 @@ Instead, we'll have to construct two models:
 ### Family situation
 B25 is the census dataset decribing 'Family Composition'.
 #### Cleaning B25 (SA3)
-We need to aggregate B25 to produce the categories in `family situation` in `df_personal_insolvencies`
+We need to aggregate B25 to produce the categories in `family situation` in `non-compliance-in-personal-insolvencies.csv`
 1. Find all unique family situations in `non-compliance-in-personal-insolvencies.csv`
 2. Express each such family situation in terms of the columns in B25
 3. Produce a new version of B25 whose columns are the family situations found in (1)
