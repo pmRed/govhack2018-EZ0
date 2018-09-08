@@ -26,3 +26,10 @@ The Debtor occupation codes in `non-compliance-in-personal-insolvencies.csv` are
 #### Cleaning T34 (SA3)
 1. Add a columns associating each Sub-Major group in `non-compliance-in-personal-insolvencies.csv` to its parent ANZSCO Major Group
 
+
+# Data Sets
+
+## GovHack AFSA 2018: SA3 Debtor, Sex of Debtor, Family Situation, Detbtor occupation code
+https://data.gov.au/dataset/non-compliance-personal-insolvencies
+
+Raw data in: data/afsa/non-compliance-in-personal-insolvencies.csv
