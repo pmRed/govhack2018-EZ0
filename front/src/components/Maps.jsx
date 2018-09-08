@@ -49,13 +49,13 @@ class Map extends Component {
         L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map)
 
         var SA3Zones = E.featureLayer({
-            url: 'https://geo.abs.gov.au/arcgis/rest/services/ASGS2011/SA3/MapServer/0',
+            url: 'https://geo.abs.gov.au/arcgis/rest/services/ASGS2016/SA3/MapServer/0',
             style: function (e) {
                 return {color: colorScale(Math.random())}
             }
         }).addTo(map)
 
-        var popupTemplate = '<h3>{SA3_NAME}</h3>WOOOP'
+        var popupTemplate = '<h3>{SA3_NAME_2016}</h3>WOOOP'
 
         SA3Zones.bindPopup(function(e){
             return L.Util.template(popupTemplate, e.feature.properties)

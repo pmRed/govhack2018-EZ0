@@ -11,17 +11,17 @@ const hashes = {
             component: Home
         },
         {
-            path: '/analytics',
-            name: 'Analytics',
-            icon: 'search',
-            component: Visualisation 
-        },
-        {
             path: '/app',
             name: 'Application',
             icon: 'rocket',
-            component: Data 
+            component: Visualisation 
         },
+        // {
+        //     path: '/app',
+        //     name: 'Application',
+        //     icon: 'rocket',
+        //     component: Data 
+        // },
         {
             path: '/sources',
             name: 'Data Sources',
