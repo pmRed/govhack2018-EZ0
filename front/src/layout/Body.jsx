@@ -60,7 +60,8 @@ class Body extends Component {
                     style={
                         {
                             paddingTop:'60px',
-                            overflowY:'scroll',
+                            paddingLeft: '150px',
+                            overflowY:'scroll'
                         }
                     }
                 >
