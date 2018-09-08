@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import 'leaflet/dist/leaflet.css'
 
-let L,E,chroma;
+let L,E,chroma
 L = require('leaflet')
 E = require('esri-leaflet')
 chroma = require('chroma-js')
@@ -49,13 +49,13 @@ class Map extends Component {
         L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map)
 
         var SA3Zones = E.featureLayer({
-            url: "https://geo.abs.gov.au/arcgis/rest/services/ASGS2011/SA3/MapServer/0",
+            url: 'https://geo.abs.gov.au/arcgis/rest/services/ASGS2011/SA3/MapServer/0',
             style: function (e) {
                 return {color: colorScale(Math.random())}
             }
         }).addTo(map)
 
-        var popupTemplate = "<h3>{SA3_NAME}</h3>WOOOP"
+        var popupTemplate = '<h3>{SA3_NAME}</h3>WOOOP'
 
         SA3Zones.bindPopup(function(e){
             return L.Util.template(popupTemplate, e.feature.properties)
