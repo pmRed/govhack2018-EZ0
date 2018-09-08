@@ -32,4 +32,10 @@ The Debtor occupation codes in `non-compliance-in-personal-insolvencies.csv` are
 ## GovHack AFSA 2018: SA3 Debtor, Sex of Debtor, Family Situation, Detbtor occupation code
 https://data.gov.au/dataset/non-compliance-personal-insolvencies
 
-Raw data in: data/afsa/non-compliance-in-personal-insolvencies.csv
+Raw data:
+
+```
+data/afsa/
+└── non-compliance-in-personal-insolvencies.csv
+```
+
