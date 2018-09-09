@@ -1,2 +1,2 @@
-const moc = {"1": "Managers", "2": "Professionals", "3": "Technicians and Trades Workers", "4": "Community and Personal Service Workers", "5": "Clerical and Administrative Workers", "6": "Sales Workers", "7": "Machinery Operators and Drivers", "8": "Labourers", "9": "Unknown"}
+const moc = {'1': 'Managers', '2': 'Professionals', '3': 'Technicians and Trades Workers', '4': 'Community and Personal Service Workers', '5': 'Clerical and Administrative Workers', '6': 'Sales Workers', '7': 'Machinery Operators and Drivers', '8': 'Labourers', '9': 'Unknown'}
 export default  moc
