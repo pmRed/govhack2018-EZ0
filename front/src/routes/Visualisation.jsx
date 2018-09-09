@@ -26,7 +26,8 @@ class Page extends Component {
         warning: false,
         bad: false,
         query: false,
-        inputWarn: false
+        inputWarn: false,
+        unk: false
     }
     searchData() {
         this.setState({query: false, good: false, bad: false, warning: false})
@@ -46,6 +47,10 @@ class Page extends Component {
             .then(e=>{
                 this.setState({inputWarn: false})
                 this.setState({query: true})
+                if(this.state.riskfactor==''){
+                    _this.setState({unk: true})
+                    return
+                }
                 if(this.state.riskfactor>1.6){
                     _this.setState({bad: true})
                     return
@@ -77,6 +82,11 @@ class Page extends Component {
                         </Message>
                     </Form>
                     <Container>
+                        <Message
+                            hidden={!this.state.unk}
+                        >
+                            <h1><b>Sorry... API call failed, try again later.</b></h1>
+                        </Message>
                         <Message
                             hidden={!this.state.warning}
                             warning

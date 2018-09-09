@@ -57,7 +57,7 @@ def calculaterisk():
     sex = request.args.get('sex')
     majorGroup = request.args.get('majorGroup')
     familySituation = request.args.get('familySituation')
-    if (sa3,family_situation) in data['b25_posterior'].keys() & (sa3,sex,majorGroup) in data['g57a_posterior'].keys():
+    if (sa3,familySituation) in data['b25_posterior'].keys() & (sa3,sex,majorGroup) in data['g57a_posterior'].keys():
         riskfactor = calculate_relative_risk(int(sa3), sex, int(majorGroup), familySituation)
         return json.dumps({"riskfactor" : riskfactor,"failed":False})
     else:
