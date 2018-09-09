@@ -26,8 +26,11 @@ class Header extends Component {
                     content='Menu'
                 /> 
                 <Container>
-                    <Menu.Item header>
-                           Insolvency Oracle 
+                    <Menu.Item header style={{
+                        paddingTop:'8px',
+                        paddingBottom:'8px',
+                        fontSize:'1.5em'}}>
+                            Insolvency Oracle
                     </Menu.Item>
                 </Container>
                 <Menu.Item as='a' 

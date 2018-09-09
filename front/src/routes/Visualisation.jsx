@@ -3,21 +3,16 @@ import React, { Component } from 'react'
 import Maps from '../components/Maps'
 import {inject, observer} from 'mobx-react'
 import {
-    Dropdown,
-    Select,
     Form,
-    Button,
     Message,
     Container,
     Segment,
-    Grid,
 } from 'semantic-ui-react'
 
 import sa3s from '../stores/sa3_dict'
 import mocs from '../stores/majGroups_dict'
 import famss from '../stores/familySituations_dict'
 
-const genders = []
 const sa3sl = _.map(sa3s, (e,t)=>{return {text: t+': '+e, value: t, key: e+t}})
 const mocsl = _.map(mocs, (e,t)=>({text: e, value: t, key: e+t}))
 const famssl = _.map(famss, (e,t)=>({text: e, value: e, key: e+t}))
