@@ -14,92 +14,28 @@ export default class Page extends Component {
         return (
             <Container>
                 <Segment style={{ padding: '8em 0em' }} vertical>
-                    <h1>Our Implementation</h1>
-                    <Grid container stackable verticalAlign='middle'>
-                        <Grid.Row>
-                            <Grid.Column width={8}>
-                                <Header as='h3'>
-                                    We Help Companies and Companions
-                                </Header>
-                                <p>
-                                    We can give your company superpowers to do things that they never thought possible.
-                                    Let us delight your customers and empower your needs... through pure data analytics.
-                                </p>
-                                <Header as='h3'>
-                                    We Make Bananas That Can Dance
-                                </Header>
-                                <p>
-                                    Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-                                    bioengineered.
-                                </p>
-                            </Grid.Column>
-                            <Grid.Column floated='right' width={6}>
-                                <Image bordered rounded size='large' src='/assets/logo.png' />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column textAlign='center'>
-                                <Button size='huge'>Check Them Out</Button>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
-                <Segment vertical>
-                    <Grid celled='internally' columns='equal' stackable>
-                        <Grid.Row textAlign='center'>
-                            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                                <Header>
-                                    "What a Company"
-                                </Header>
-                                <p>
-                                    That is what they all say about us
-                                </p>
-                            </Grid.Column>
-                            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                                <Header as='h3'>
-                                    "I shouldn't have gone with their competitor."
-                                </Header>
-                                <p>
-                                    <Image avatar src='./assets/imgs/avatar/small/ade.jpg' />
-                                    <b>Nan</b> Chief Fun Officer Acme Toys
-                                </p>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
-                <Segment style={{ padding: '8em 0em' }} vertical>
-                    <Container text>
-                        <Header as='h3'>
-                            Breaking The Grid, Grabs Your Attention
-                        </Header>
-                        <p>
-                            Instead of focusing on content creation and hard work, we have learned how to master the
-                            art of doing nothing by providing massive amounts of whitespace and generic content that
-                            can seem massive, monolithic and worth your attention.
-                        </p>
-                        <Button as='a' size='large'>
-                            Read More
-                        </Button>
-                        <Divider
-                            as='h4'
-                            className='header'
-                            horizontal
-                        >
-                            <a>Case Studies</a>
-
-                        </Divider>
-                        <Header as='h3'>
-                            Did We Tell You About Our Bananas?
-                        </Header>
-                        <p>
-                            Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-                            it's really true. It took years of gene splicing and combinatory DNA research, but our
-                            bananas can really dance.
-                        </p>
-                        <Button as='a' size='large'>
-                            I'm Still Quite Interested
-                        </Button>
-                    </Container>
+                    <b>We built an AI-based platform that uses information about an individual to quantity their relative insolvency risk.</b>
+                Their relative risk is expressed as a number which indicates how many times less/more likely than average a given individual is to become insolvent.
+                We also used this model to derive broad demographic trends in personal insolvency. Geographic insolvency trends are indicated on an interactive map which highlights SA3 regions by the expected insolvency rates. Trends relation to occupation, gender, and family composition are also visualised.
+                    <h1 id="overview">Overview</h1>
+                    <p>We wanted to estimate, using a Bayesian AI model, the likelihood of a person becoming personally insolvent, given certain information about them. But to do this, we needed the marginal and prior distributions for each variable. Getting statistics about these variables for the general population was difficult, and some key variables had to be abandoned (e.g. assets, liability). However, a few key variables <em>could</em> be correlated with census data.</p>
+                    <h1 id="variablesofinterest">Variables of interest</h1>
+                    <p>The variables which were common to the given <code>non-compliance-in-personal-insolvencies.csv</code> dataset and 2016 census data are:</p>
+                    <ul>
+                        <li>the SA3 of debtor</li>
+                        <li>Family situation of debtor (Census dataset B25 SA3)</li>
+                        <li>Sex of debtor (Census dataset B57A SA3)</li>
+                        <li>Debtor occupation code (these seem to be Sub-Major Groups in the ANZCO ontology, see http://www.abs.gov.au/ANZSCO; the closest relevant dataset was B57A SA3 which used ANZSCO Major Groups</li>
+                    </ul>
+                    <h1 id="approach">Approach</h1>
+                    <p>Because we don't have the joint distribution of Debtor occupation and family situation, we can't do this with a single model.
+Instead, we'll have to construct two models:</p>
+                    <ul>
+                        <li>Estimating Pr(non-compliance) given SA3, sex, and family situation</li>
+                        <li>Estimating Pr(non-compliance) given SA3, sex, and debtor occupation
+We then need to find a way to combine these predictors to give a single number. Adding in quadrature after normalising by the non-compliant marginal probability seemed to be a sensible option.</li>
+                    </ul>
+                    <p>So we calculated the average expected risk of non-compliance (i.e. the marginal risk of non-compliance), and expressed every prediction in units of this quantity (e.g. person X is 2.5x more likely to be non-compliant than average given their demographic information). </p>
                 </Segment>
             </Container>
         )
