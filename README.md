@@ -21,9 +21,9 @@ We need to aggregate B25 to produce the categories in `family situation` in `non
 3. Produce a new version of B25 whose columns are the family situations found in (1)
 
 ### Debtor Occupation
-The Debtor occupation codes in `non-compliance-in-personal-insolvencies.csv` are _Sub-Major Groups_ in the ANZCO ontology, see http://www.abs.gov.au/ANZSCO. However census data only has _Major Groups_. Consequently our model will only be able to ooperate on ANZSCO major groups. The relevant census datasets are either _B45 Occupation by Age by Sex_ (in which case age needs to be marginalised out) or _T34 Occupation By Sex_ (which is time-series data for each census year). Suppose we use T34 (SA3)
+The Debtor occupation codes in `non-compliance-in-personal-insolvencies.csv` are _Sub-Major Groups_ in the ANZCO ontology, see http://www.abs.gov.au/ANZSCO. However census data only has _Major Groups_. Consequently our model will only be able to ooperate on ANZSCO major groups. The relevant census datasets are either _B45 Occupation by Age by Sex_ (in which case age needs to be marginalised out) or _T34 Occupation By Sex_ (which is time-series data for each census year). We ended up using B57A.
 
-#### Cleaning T34 (SA3)
+#### Cleaning B57A (SA3)
 1. Add a columns associating each Sub-Major group in `non-compliance-in-personal-insolvencies.csv` to its parent ANZSCO Major Group
 
 
