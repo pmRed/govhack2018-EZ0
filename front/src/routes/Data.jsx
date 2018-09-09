@@ -12,6 +12,7 @@ export default class Page extends Component {
             <Container>
                 <Segment style={{ padding: '8em 0em' }} vertical>
                     <h1> Data Sources and Discussion</h1>
+                    <p> </p>
                     <List divided relaxed>
                         <List.Item>
                             <List.Icon name='database' size='large' verticalAlign='middle' />
