@@ -58,7 +58,7 @@ class Map extends Component {
             }
         }).addTo(map)
 
-        var popupTemplate = '<h3>{SA3_NAME_2016}</h3><br/><b>Marginalised Insolvency: {index}%</b>'
+        var popupTemplate = '<h3>{SA3_NAME_2016}</h3><br/><b>Insolvency rate: {index}%</b>'
 
         SA3Zones.bindPopup(function(e){
             return L.Util.template(popupTemplate, {index:(sa3[e.feature.properties.SA3_CODE_2016]*100).toString().substring(0,5), 

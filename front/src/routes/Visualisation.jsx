@@ -77,21 +77,21 @@ class Page extends Component {
             labels: _.map(mocsl,'value'),
             datasets: [
                 {
-                    label: 'Probability by Occupation',
+                    label: 'Number of insolvencies by occupation per 10000 workers',
                     backgroundColor: 'rgba(255,99,132,0.2)',
                     borderColor: 'rgba(255,99,132,1)',
                     borderWidth: 1,
                     hoverBackgroundColor: 'rgba(255,99,132,0.4)',
                     hoverBorderColor: 'rgba(255,99,132,1)',
-                    data: _.map(mocsdata,(e)=>e)
+                    data: _.map(mocsdata,(e)=>e*10000)
                 },
             ]
         }
         return (
             <Container fluid style={{padding:'50px 50px'}}>
-                <h1>Our Analytics Tool</h1>
+                <h1>Insolvency Oracle</h1>
                 <Segment color='blue' textAlign='center'>
-                    <h2>Insolvency Oracle</h2>
+                  <h2>How much more likely is a person in this demographic to become insolvent compared to the average?</h2>
                     <hr/>
                     <Form>
                         <Form.Group widths='equal'>
@@ -125,13 +125,14 @@ class Page extends Component {
                         </Message>
                     </Container>
                 </Segment>
-                <Segment> 
-                    <h2>Insolvency Probability by SA3</h2>
+                <Segment>
+                  <h2>The big picture, what is the average rate of insolvency by region?</h2>
                     <Container fluid style={{ height:'800px'}}>
                         <Maps/>
                     </Container>
                 </Segment>
                 <Segment>
+                  <h2>Number of insolvencies by occupation per 10000 workers (Australia wide)</h2>
                     <Container>
                         <Bar
                             data={datasml}
@@ -143,7 +144,7 @@ class Page extends Component {
                                     yAxes: [{
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Probability of Insolvency'
+                                            labelString: 'Probability of Insolvency (per 10000 workers)'
                                         }
                                     }]
                                 }
