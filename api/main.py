@@ -24,6 +24,9 @@ CORS(app)
 
 @app.route("/calculaterisk")
 def calculaterisk():
+    help = request.args.get('help')
+    if (help == "me"):
+        return "{}?sa3=80105&sex=Female&majorGroup=3&familySituation=Single%20with%20Dependants".format(request.base_url)
     sa3 = request.args.get('sa3')
     sex = request.args.get('sex')
     majorGroup = request.args.get('majorGroup')
