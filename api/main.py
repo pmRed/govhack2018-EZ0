@@ -57,10 +57,11 @@ def calculaterisk():
     sex = request.args.get('sex')
     majorGroup = request.args.get('majorGroup')
     familySituation = request.args.get('familySituation')
-    if (sa3,familySituation) in data['b25_posterior'].keys() & (sa3,sex,majorGroup) in data['g57a_posterior'].keys():
+    try:
         riskfactor = calculate_relative_risk(int(sa3), sex, int(majorGroup), familySituation)
         return json.dumps({"riskfactor" : riskfactor,"failed":False})
-    else:
+    except:
+        print(sa3, sex, majorGroup, familySituation)
         return json.dumps({"failed":True})
 
 @app.route("/calculate_prob_sa3")
@@ -71,9 +72,10 @@ def calculate_prob_sa3():
     sa3 = request.args.get('sa3')
     useNorm = request.args.get('useNorm')
     prob = calculate_prob_noncompliance_sa3(int(sa3),useNorm)
-    if sa3 in data['b25_posterior_SA3_only'].keys():
+    #if sa3 in data['b25_posterior_SA3_only'].keys():
+    try:
         return json.dumps({"probability" : prob,"failed":False})
-    else:
+    except:
         return json.dumps({"failed":True})
         
 
@@ -85,9 +87,10 @@ def calculate_prob_family():
     familySituation = request.args.get('familySituation')
     useNorm = request.args.get('useNorm')
     prob = calculate_prob_noncompliance_family(familySituation,useNorm)
-    if familySituation in data['b25_posterior_FS_only'].keys():
+    #if familySituation in data['b25_posterior_FS_only'].keys():
+    try:
         return json.dumps({"probability" : prob,"failed":False})
-    else:
+    except:
         return json.dumps({"failed":True})
 
 @app.route("/calculate_prob_sex")
@@ -98,9 +101,10 @@ def calculate_prob_sex():
     sex = request.args.get('sex')
     useNorm = request.args.get('useNorm')
     prob = calculate_prob_noncompliance_sex(sex,useNorm)
-    if sex in data['b25_posterior_sex_only'].keys():
+    #if sex in data['b25_posterior_sex_only'].keys():
+    try:
         return json.dumps({"probability" : prob,"failed":False})
-    else:
+    except:
         return json.dumps({"failed":True})
 
 
@@ -112,9 +116,10 @@ def calculate_prob_occupation():
     majorGroup = request.args.get('majorGroup')
     useNorm = request.args.get('useNorm')
     prob = calculate_prob_noncompliance_majGroup(int(majorGroup),useNorm)
-    if majorGroup in data['b25_posterior_majGroup_only'].keys():
+    #if majorGroup in data['b25_posterior_majGroup_only'].keys():
+    try:
         return json.dumps({"probability" : prob,"failed":False})
-    else:
+    except:
         return json.dumps({"failed":True})
 
 if __name__ == '__main__':
