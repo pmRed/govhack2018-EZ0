@@ -27,7 +27,7 @@ class Header extends Component {
                 /> 
                 <Container>
                     <Menu.Item header>
-                            Project Name
+                           Insolvency Oracle 
                     </Menu.Item>
                 </Container>
                 <Menu.Item as='a' 
