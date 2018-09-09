@@ -9,14 +9,18 @@ import {
     Segment,
 } from 'semantic-ui-react'
 
+import {Bar} from 'react-chartjs-2'
+
 import sa3s from '../stores/sa3_dict'
 import mocs from '../stores/majGroups_dict'
 import famss from '../stores/familySituations_dict'
+import mocsdata from '../stores/majGroup_prediction'
 
 const sa3sl = _.map(sa3s, (e,t)=>{return {text: t+': '+e, value: t, key: e+t}})
 const mocsl = _.map(mocs, (e,t)=>({text: e, value: t, key: e+t}))
 const famssl = _.map(famss, (e,t)=>({text: e, value: e, key: e+t}))
 
+console.log(mocsdata)
 @inject('UIState')
 @observer
 class Page extends Component {
@@ -29,14 +33,16 @@ class Page extends Component {
         inputWarn: false,
         unk: false
     }
+
     searchData() {
-        this.setState({query: false, good: false, bad: false, warning: false})
+        this.setState({query: false, good: false, bad: false, warning: false, unk: false})
         const {sa3, gender, moc, fams} = this.state
         const _this = this
         if ( sa3== null || gender == null || moc == null || fams == null ){
             this.setState({inputWarn: true})
             return 
         }
+
         fetch('http://localhost:5500/calculaterisk?sa3='
             +sa3+'&sex='
             +gender+'&majorGroup='
@@ -47,7 +53,7 @@ class Page extends Component {
             .then(e=>{
                 this.setState({inputWarn: false})
                 this.setState({query: true})
-                if(this.state.riskfactor==''){
+                if(this.state.failed){
                     _this.setState({unk: true})
                     return
                 }
@@ -62,10 +68,12 @@ class Page extends Component {
                 else { _this.setState({good: true}) }
             })
     }
+
     render() {
+        const rfSimp = this.state.riskfactor
         return (
             <Container fluid style={{padding:'50px 50px'}}>
-                <h1> Data Analytics</h1>
+                <h1>Our Analytics Tool</h1>
                 <Segment color='blue' textAlign='center'>
                     <h2>Insolvency Oracle</h2>
                     <hr/>
@@ -85,22 +93,25 @@ class Page extends Component {
                         <Message
                             hidden={!this.state.unk}
                         >
-                            <h1><b>Sorry... API call failed, try again later.</b></h1>
+                            <h1><b>Sorry... Not enough data to make inference.</b></h1>
                         </Message>
                         <Message
                             hidden={!this.state.warning}
                             warning
                         >
-                            <h1><b>Risk Multiplier: </b>{this.state.riskfactor}</h1>
+                            <h1><b>Risk Multiplier: </b>{rfSimp}</h1>
                         </Message>
                         <Message negative hidden={!this.state.bad}>
-                            <h1><b>Risk Multiplier: </b>{this.state.riskfactor}</h1>
+                            <h1><b>Risk Multiplier: </b>{rfSimp}</h1>
                         </Message>
                         <Message positive hidden={!this.state.good}>
-                            <h1><b>Risk Multiplier: </b>{this.state.riskfactor}</h1>
+                            <h1><b>Risk Multiplier: </b>{rfSimp}</h1>
                         </Message>
                     </Container>
                 </Segment>
+                <Segment>
+               
+                </Segment> 
                 <Segment> 
                     <h2>Insolvency Probability by SA3</h2>
                     <Container fluid style={{ height:'800px'}}>

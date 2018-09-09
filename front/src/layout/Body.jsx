@@ -43,7 +43,7 @@ class  AutoSidebar extends Component {
                     })
                 }
                 {
-                    <Menu.Item as='a' href='https://www.github.com'>
+                    <Menu.Item as='a' href='https://www.github.com/pmred/govhack2018-EZ0'>
                         Our Code
                         <Icon name='github'/>
                     </Menu.Item>

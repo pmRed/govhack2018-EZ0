@@ -27,10 +27,9 @@ export default class Page extends Component {
                         <List.Item>
                             <List.Icon name='database' size='huge' verticalAlign='middle' />
                             <List.Content>
-                              <List.Header as='a'>GovHack ATO 2018 </List.Header>
+                              <List.Header as='a' href='https://data.gov.au/dataset/govhackato/resource/f3bcbd38-b3e9-4a27-8729-2314f05a6ae4?inner_span=True'>GovHack ATO 2018 </List.Header>
                               <List.Description>
                                 <p>For transparency and repeatability, the raw data that was use is stored in the git repository at `data/ato/atoabsgovhack2018.xlsx`. For convenience, each sheet been extracted into CSV files. We were most interested in this dataset for the correlation between postcode and the total number of people who have lodged a tax return.</p>
-                                <a href='https://data.gov.au/dataset/govhackato/resource/f3bcbd38-b3e9-4a27-8729-2314f05a6ae4?inner_span=True'>Link</a>
                               </List.Description>
                             </List.Content>
                         </List.Item>
