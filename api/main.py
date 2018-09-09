@@ -59,6 +59,7 @@ def calculaterisk():
     familySituation = request.args.get('familySituation')
     try:
         riskfactor = calculate_relative_risk(int(sa3), sex, int(majorGroup), familySituation)
+        print(riskfactor)
         return json.dumps({"riskfactor" : riskfactor,"failed":False})
     except:
         print(sa3, sex, majorGroup, familySituation)

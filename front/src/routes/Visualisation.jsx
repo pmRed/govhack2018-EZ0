@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Maps from '../components/Maps'
 import {inject, observer} from 'mobx-react'
 import {
+    List,
     Form,
     Message,
     Container,
@@ -70,7 +71,22 @@ class Page extends Component {
     }
 
     render() {
-        const rfSimp = this.state.riskfactor
+        const rfSimp = (this.state.riskfactor).toString().substring(0,5)
+        console.log(mocsl)
+        const datasml = {
+            labels: _.map(mocsl,'value'),
+            datasets: [
+                {
+                    label: 'Probability by Occupation',
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    data: _.map(mocsdata,(e)=>e)
+                },
+            ]
+        }
         return (
             <Container fluid style={{padding:'50px 50px'}}>
                 <h1>Our Analytics Tool</h1>
@@ -109,15 +125,38 @@ class Page extends Component {
                         </Message>
                     </Container>
                 </Segment>
-                <Segment>
-               
-                </Segment> 
                 <Segment> 
                     <h2>Insolvency Probability by SA3</h2>
                     <Container fluid style={{ height:'800px'}}>
                         <Maps/>
                     </Container>
                 </Segment>
+                <Segment>
+                    <Container>
+                        <Bar
+                            data={datasml}
+                            width={100}
+                            height={500}
+                            options={{
+                                maintainAspectRatio: false,
+                                scales: {
+                                    yAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Probability of Insolvency'
+                                        }
+                                    }]
+                                }
+                            }} 
+                        >
+                        </Bar> 
+                    </Container>
+                    <h4>Index</h4>
+                    <List horizontal celled>
+                        {mocsl.map((e)=><List.Item>{e['value']}: {e['text']}</List.Item>)}
+                    </List>
+                </Segment> 
+
             </Container>
         )
     }
